@@ -20,7 +20,7 @@ public class MailService {
 
     public void sendMaterialEmail(User user) throws MessagingException, UnsupportedEncodingException {
     String toAdress = user.getEmail();
-    String fromAdress = "${EMAIL.SENDER}";
+    String fromAdress = "${MAIL.EMAIL.SENDER}";
     String senderName = "SalomeStudies";
     String subject = "Material da Salome Studies";
 
