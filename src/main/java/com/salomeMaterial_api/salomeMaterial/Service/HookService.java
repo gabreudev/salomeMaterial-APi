@@ -112,6 +112,10 @@ public class HookService {
                 JSONObject response = efi.call("pixDetailCharge", params, new JSONObject());
                 System.out.println(response);
 
+                String status = response.getString("status");
+                if (!status.equals("CONCLUIDO")) {
+                    return;
+                }
                 JSONObject devedor = response.getJSONObject("devedor");
                 String cpf = devedor.getString("cpf");
                 String nome = devedor.getString("nome");
