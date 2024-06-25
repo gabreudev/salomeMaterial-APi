@@ -19,12 +19,15 @@ public class MailService {
 
 
     public void sendMaterialEmail(User user) throws MessagingException, UnsupportedEncodingException {
-    String toAdress = user.getEmail();
+    String toAdress = user.email();
     String fromAdress = "${MAIL.EMAIL.SENDER}";
     String senderName = "SalomeStudies";
     String subject = "Material da Salome Studies";
 
-    String content = "PAGINA HTML COM O MATERIAL";
+    String content = "Olá [[NAME]]! Portador(a) do CPF [[CPF]]! Aqui está o seu material da SaloméStudies! \n PAGINA COM O MATERIAL";
+    content.replace("[[NAME]]", user.nome());
+    content.replace("[[CPF]]", user.cpf());
+
 
     MimeMessage mimeMessage = emailSender.createMimeMessage();
     MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);

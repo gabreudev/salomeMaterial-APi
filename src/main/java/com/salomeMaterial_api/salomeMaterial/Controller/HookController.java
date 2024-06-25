@@ -1,7 +1,6 @@
 package com.salomeMaterial_api.salomeMaterial.Controller;
 
 import com.salomeMaterial_api.salomeMaterial.Service.HookService;
-import netscape.javascript.JSObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +37,7 @@ public class HookController {
         JSONObject jsonPayload = new JSONObject(payload);
         JSONArray pixArray = jsonPayload.getJSONArray("pix");
         JSONObject pixObject = pixArray.getJSONObject(0);
-        this.hookService.verifypayment(pixObject.getString("txid"));
-
-        System.out.println();
+        this.hookService.verifyPayment(pixObject.getString("txid"),pixObject.getString("valor"));
         return ResponseEntity.ok(jsonPayload);
     }
     @GetMapping("delete")

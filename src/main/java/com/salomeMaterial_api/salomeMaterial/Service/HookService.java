@@ -2,13 +2,16 @@ package com.salomeMaterial_api.salomeMaterial.Service;
 
 import br.com.efi.efisdk.EfiPay;
 import br.com.efi.efisdk.exceptions.EfiPayException;
+import com.salomeMaterial_api.salomeMaterial.Entity.User;
 import com.salomeMaterial_api.salomeMaterial.Pix.Credentials;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-
+import java.util.Objects;
 
 
 @Service
@@ -20,6 +23,9 @@ public class HookService {
 
     @Value("${CLIENT_SECRET}")
     private String clientSecret;
+
+    @Autowired
+    private MailService mailService;
 
     public JSONObject configHook(){
 
@@ -94,6 +100,45 @@ public class HookService {
         return null;
     }
 
+    public void verifyPayment(String txid, String valor) {
+        if (Objects.equals(valor, "0.01")) {
+            JSONObject options = configuringJsonObject();
+
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("txid", txid);
+
+            try {
+                EfiPay efi = new EfiPay(options);
+                JSONObject response = efi.call("pixDetailCharge", params, new JSONObject());
+                System.out.println(response);
+
+                JSONObject devedor = response.getJSONObject("devedor");
+                String cpf = devedor.getString("cpf");
+                String nome = devedor.getString("nome");
+                String email = null;
+
+                JSONArray infoAdicionais = response.getJSONArray("infoAdicionais");
+                for (int i = 0; i < infoAdicionais.length(); i++) {
+                    JSONObject info = infoAdicionais.getJSONObject(i);
+                    if (info.getString("nome").equals("email")) {
+                        email = info.getString("valor");
+                    }
+                }
+                if (email != null) {
+                    User data = new User(email, nome, cpf);
+                    mailService.sendMaterialEmail(data);
+                }
+
+            }catch(EfiPayException e){
+                System.out.println(e.getError());
+                System.out.println(e.getErrorDescription());
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private JSONObject configuringJsonObject(){
         Credentials credentials = new Credentials();
 
@@ -106,8 +151,6 @@ public class HookService {
         return options;
     }
 
-    public void verifypayment(String txid) {
 
-    }
 }
 

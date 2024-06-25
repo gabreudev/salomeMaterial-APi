@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -51,14 +52,16 @@ public class PixService {
 
         JSONObject body = new JSONObject();
         body.put("calendario", new JSONObject().put("expiracao", 3600));
-        body.put("devedor", new JSONObject().put("cpf", "12345678909").put("nome", "Francisco da Silva"));
-        body.put("valor", new JSONObject().put("original", pixChargeRequest.valor()));
-        body.put("chave", pixChargeRequest.chave());
-
+        body.put("devedor", new JSONObject()
+                .put("cpf", pixChargeRequest.cpf())
+                .put("nome", pixChargeRequest.nome())
+        );
         JSONArray infoAdicionais = new JSONArray();
-        infoAdicionais.put(new JSONObject().put("nome", "Campo 1").put("valor", "Informação Adicional1 do PSP-Recebedor"));
-        infoAdicionais.put(new JSONObject().put("nome", "Campo 2").put("valor", "Informação Adicional2 do PSP-Recebedor"));
+        infoAdicionais.put(new JSONObject().put("nome", "email").put("valor", pixChargeRequest.email()));
         body.put("infoAdicionais", infoAdicionais);
+
+        body.put("valor", new JSONObject().put("original", "0.01"));
+        body.put("chave", "2d9c6bfd-d19e-4123-8a35-c2f0caac55db");
 
         try {
             EfiPay efi = new EfiPay(options);
@@ -67,8 +70,6 @@ public class PixService {
 
             int idFromJson= response.getJSONObject("loc").getInt("id");
             pixGenerateQRCode(String.valueOf(idFromJson));
-
-
 
             return response;
         }catch (EfiPayException e){
