@@ -31,7 +31,7 @@ public class HookService {
         params.put("chave", "2d9c6bfd-d19e-4123-8a35-c2f0caac55db");
 
         JSONObject body = new JSONObject();
-        body.put("webhookUrl", "https://37c3-45-170-222-201.ngrok-free.app/webhook/");
+        body.put("webhookUrl", "https://d720-45-170-222-201.ngrok-free.app/webhook");
 
         try {
             EfiPay efi = new EfiPay(options);
@@ -73,6 +73,26 @@ public class HookService {
         }
 
     }
+    public JSONObject deleteWebhook() {
+
+        JSONObject options = configuringJsonObject();
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("chave", "2d9c6bfd-d19e-4123-8a35-c2f0caac55db");
+
+        try {
+            EfiPay efi = new EfiPay(options);
+            JSONObject response = efi.call("pixDeleteWebhook", params, new JSONObject());
+            System.out.println(response);
+            return response;
+        } catch (EfiPayException e) {
+            System.out.println(e.getError());
+            System.out.println(e.getErrorDescription());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
     private JSONObject configuringJsonObject(){
         Credentials credentials = new Credentials();
@@ -84,6 +104,10 @@ public class HookService {
         options.put("sandbox", credentials.isSandbox());
 
         return options;
+    }
+
+    public void verifypayment(String txid) {
+
     }
 }
 

@@ -63,6 +63,7 @@ public class PixService {
         try {
             EfiPay efi = new EfiPay(options);
             JSONObject response = efi.call("pixCreateImmediateCharge", new HashMap<String,String>(), body);
+            System.out.println(response.get("txid"));
 
             int idFromJson= response.getJSONObject("loc").getInt("id");
             pixGenerateQRCode(String.valueOf(idFromJson));
