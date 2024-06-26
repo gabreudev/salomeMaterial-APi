@@ -37,7 +37,7 @@ public class HookService {
         params.put("chave", "2d9c6bfd-d19e-4123-8a35-c2f0caac55db");
 
         JSONObject body = new JSONObject();
-        body.put("webhookUrl", "https://d720-45-170-222-201.ngrok-free.app/webhook");
+        body.put("webhookUrl", "https://1a71-45-170-222-201.ngrok-free.app/webhook");
 
         try {
             EfiPay efi = new EfiPay(options);
@@ -110,10 +110,10 @@ public class HookService {
             try {
                 EfiPay efi = new EfiPay(options);
                 JSONObject response = efi.call("pixDetailCharge", params, new JSONObject());
-                System.out.println(response);
 
                 String status = response.getString("status");
-                if (!status.equals("CONCLUIDO")) {
+                if (!status.equals("CONCLUIDA")) {
+                    System.out.println("não esta concluida");
                     return;
                 }
                 JSONObject devedor = response.getJSONObject("devedor");
@@ -126,10 +126,12 @@ public class HookService {
                     JSONObject info = infoAdicionais.getJSONObject(i);
                     if (info.getString("nome").equals("email")) {
                         email = info.getString("valor");
+
                     }
                 }
                 if (email != null) {
                     User data = new User(email, nome, cpf);
+                    System.out.println("enviando no email");
                     mailService.sendMaterialEmail(data);
                 }
 

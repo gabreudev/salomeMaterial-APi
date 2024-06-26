@@ -25,8 +25,8 @@ public class MailService {
     String subject = "Material da Salome Studies";
 
     String content = "Olá [[NAME]]! Portador(a) do CPF [[CPF]]! Aqui está o seu material da SaloméStudies! \n PAGINA COM O MATERIAL";
-    content.replace("[[NAME]]", user.nome());
-    content.replace("[[CPF]]", user.cpf());
+    content = content.replace("[[NAME]]", user.nome());
+    content = content.replace("[[CPF]]", user.cpf());
 
 
     MimeMessage mimeMessage = emailSender.createMimeMessage();
