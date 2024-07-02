@@ -36,6 +36,10 @@ public class PixService {
     }
 
     public JSONObject pixCreateCharge(PixChargeRequest pixChargeRequest) {
+
+        if (!isEmailValid(pixChargeRequest.email()))
+            throw new RuntimeException("Email invalido");
+
         JSONObject options = configuringJsonObject();
 
         JSONObject body = new JSONObject();
@@ -96,5 +100,9 @@ public class PixService {
         options.put("sandbox", credentials.isSandbox());
 
         return options;
+    }
+    public boolean isEmailValid(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(regex);
     }
 }

@@ -44,6 +44,10 @@ public class PixController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(errorResponse("Erro ao gerar cobrança PIX: ", e.getMessage()).toString());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(errorResponse("Erro ao gerar cobrança PIX: ", e.getMessage()).toString());
         }
     }
 
