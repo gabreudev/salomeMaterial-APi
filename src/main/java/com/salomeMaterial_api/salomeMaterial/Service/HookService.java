@@ -34,10 +34,10 @@ public class HookService {
         options.put("x-skip-mtls-checking", "true");
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("chave", "2d9c6bfd-d19e-4123-8a35-c2f0caac55db");
+        params.put("chave", "6fb9b45c-bfbf-4ad2-aabc-50e9effbe3ef");
 
         JSONObject body = new JSONObject();
-        body.put("webhookUrl", "https://1a71-45-170-222-201.ngrok-free.app/webhook");
+        body.put("webhookUrl", "https://1fbb-45-170-222-162.ngrok-free.app/webhook");
 
         try {
             EfiPay efi = new EfiPay(options);
@@ -84,7 +84,7 @@ public class HookService {
         JSONObject options = configuringJsonObject();
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("chave", "2d9c6bfd-d19e-4123-8a35-c2f0caac55db");
+        params.put("chave", "6fb9b45c-bfbf-4ad2-aabc-50e9effbe3ef");
 
         try {
             EfiPay efi = new EfiPay(options);

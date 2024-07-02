@@ -14,7 +14,8 @@ public class HookController {
     @Autowired
     private HookService hookService;
 
-    @GetMapping("webhook/create")
+
+    @PutMapping("webhook/create")
     public ResponseEntity configHook(){
         JSONObject response = this.hookService.configHook();
         return ResponseEntity.ok()

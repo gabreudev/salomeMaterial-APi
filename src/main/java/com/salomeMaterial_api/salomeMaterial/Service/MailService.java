@@ -24,7 +24,7 @@ public class MailService {
     String senderName = "SalomeStudies";
     String subject = "Material da Salome Studies";
 
-    String content = "Olá [[NAME]]! Portador(a) do CPF [[CPF]]! Aqui está o seu material da SaloméStudies! \n PAGINA COM O MATERIAL";
+    String content = "Olá [[NAME]]! Portador(a) do CPF [[CPF]]! TOME UMA CURIOSIDADE - \n ALEF É COMUNISTA";
     content = content.replace("[[NAME]]", user.nome());
     content = content.replace("[[CPF]]", user.cpf());
 
