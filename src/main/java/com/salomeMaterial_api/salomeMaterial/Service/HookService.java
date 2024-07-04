@@ -34,7 +34,7 @@ public class HookService {
         options.put("x-skip-mtls-checking", "true");
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("chave", "6fb9b45c-bfbf-4ad2-aabc-50e9effbe3ef");
+        params.put("chave", "78dad91d-e7f0-4877-8b61-d731d884a47f");
 
         JSONObject body = new JSONObject();
         body.put("webhookUrl", "https://1fbb-45-170-222-162.ngrok-free.app/webhook");
@@ -84,7 +84,7 @@ public class HookService {
         JSONObject options = configuringJsonObject();
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("chave", "6fb9b45c-bfbf-4ad2-aabc-50e9effbe3ef");
+        params.put("chave", "78dad91d-e7f0-4877-8b61-d731d884a47f");
 
         try {
             EfiPay efi = new EfiPay(options);
@@ -131,7 +131,6 @@ public class HookService {
                 }
                 if (email != null) {
                     User data = new User(email, nome, cpf);
-                    System.out.println("enviando no email");
                     mailService.sendMaterialEmail(data);
                 }
 

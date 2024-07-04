@@ -24,7 +24,6 @@ public class PixService {
 
     public JSONObject pixCreateEVP() {
         JSONObject options = configuringJsonObject();
-
         try {
             EfiPay efi = new EfiPay(options);
             return efi.call("pixCreateEvp", new HashMap<>(), new JSONObject());
@@ -43,7 +42,7 @@ public class PixService {
         JSONObject options = configuringJsonObject();
 
         JSONObject body = new JSONObject();
-        body.put("calendario", new JSONObject().put("expiracao", 3600));
+        body.put("calendario", new JSONObject().put("expiracao", 86400));
         body.put("devedor", new JSONObject()
                 .put("cpf", pixChargeRequest.cpf())
                 .put("nome", pixChargeRequest.nome())
@@ -53,7 +52,7 @@ public class PixService {
         body.put("infoAdicionais", infoAdicionais);
 
         body.put("valor", new JSONObject().put("original", "0.01"));
-        body.put("chave", "6fb9b45c-bfbf-4ad2-aabc-50e9effbe3ef");
+        body.put("chave", "78dad91d-e7f0-4877-8b61-d731d884a47f");
 
         try {
             EfiPay efi = new EfiPay(options);

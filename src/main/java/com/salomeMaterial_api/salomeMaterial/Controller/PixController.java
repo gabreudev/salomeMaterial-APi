@@ -17,7 +17,6 @@ public class PixController {
     @Autowired
     private PixService pixService;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<String> pixCreateEVP() {
         try {
