@@ -4,7 +4,7 @@ com/salomeMaterial_api/salomeMaterial/SalomeMaterialApplication.class
 com/salomeMaterial_api/salomeMaterial/Entity/PixChargeRequest.class
 com/salomeMaterial_api/salomeMaterial/Entity/User.class
 com/salomeMaterial_api/salomeMaterial/Controller/HookController.class
-com/salomeMaterial_api/salomeMaterial/Controller/EmailController.class
 com/salomeMaterial_api/salomeMaterial/Service/PixService.class
+com/salomeMaterial_api/salomeMaterial/Exceptions/PixServiceException.class
 com/salomeMaterial_api/salomeMaterial/Pix/Credentials.class
 com/salomeMaterial_api/salomeMaterial/Service/MailService.class

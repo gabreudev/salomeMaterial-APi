@@ -5,6 +5,6 @@
 /home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Entity/PixChargeRequest.java
 /home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Service/HookService.java
 /home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Controller/HookController.java
-/home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Controller/EmailController.java
+/home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Exceptions/PixServiceException.java
 /home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Controller/PixController.java
 /home/gabriel/Documentos/java/salomeMaterial-APi/src/main/java/com/salomeMaterial_api/salomeMaterial/Pix/Credentials.java
