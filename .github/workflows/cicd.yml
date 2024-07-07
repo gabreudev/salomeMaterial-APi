@@ -34,12 +34,12 @@ jobs:
           name: salomeMaterial
       - name: deploy to azure
         env:
-          MAIL_PASSWORD_SENDER: ${{ secrets.MAIL.PASSWORD.SENDER }}
-          MAIL_EMAIL_SENDER: ${{ secrets.MAIL.EMAIL.SENDER }}
+          MAIL_PASSWORD_SENDER: ${{ secrets.MAIL_PASSWORD_SENDER }}
+          MAIL_EMAIL_SENDER: ${{ secrets.MAIL_EMAIL_SENDER }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
         uses: azure/webapps-deploy@v2
         with:
           app-name: SalomeMaterial-api
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-          package: '*.jar'
+          package: ${{ github.workspace }}/salomeMaterial/*.jar
